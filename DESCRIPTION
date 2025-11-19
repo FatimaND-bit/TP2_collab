@@ -3,11 +3,10 @@ Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
 Authors@R: c(
-    person(
-      "Jane", "Doe",
-      email = "jane@example.com",
-      role = c("aut", "cre")
-    )
+    person("Nathan", "Tremblay", email = "natre234@ulaval.ca",  role = "Étudiant")
+    person()
+    person()
+    person()
   )
 Description: More about what it does (maybe more than one line).
     Continuation lines should be indented.
