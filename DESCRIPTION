@@ -1,16 +1,35 @@
 Package: llmstats
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Analyse Statistique Contextuelle Assistée par LLM
 Version: 0.1.0
 Authors@R: c(
-    person("Nathan", "Tremblay", email = "natre234@ulaval.ca",  role = "Étudiant")
-    person()
-    person()
-    person()
-  )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+    person("Nathan", "Tremblay", 
+           email = "natre234@ulaval.ca", 
+           role = c("aut", "cre")),
+    person("Ahouansou", "Marck-Land", 
+           email = "marckland.ahouansou.1@ulaval.ca",
+           role = "aut"),
+    person("", "", 
+           email = "",
+           role = "aut"),
+    person("", "", 
+           email = "",
+           role = "aut")
+)
+Description: Ce package étend des fonctions statistiques classiques 
+    (ANOVA, corrélation, etc.) en y intégrant une interprétation automatique 
+    générée par un modèle de langage (LLM). Il inclut des méthodes S3 pour 
+    print(), summary() et plot(), ainsi qu'un outil d'extraction de contexte 
+    depuis l'aide des jeux de données. Compatible avec Ollama via le backend 
+    du package 'ellmer'.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2
+Depends: R (>= 4.1.0)
+Imports:
+    stats,
+    utils,
+    tools,
+    ggplot2,
+    ellmer
+RoxygenNote: 7.3.3
