@@ -277,3 +277,69 @@ summary.context_cor <- function(object,
 
   invisible(object)
 }
+# =====================================================================
+# Méthode PLOT pour context_cor 
+# =====================================================================
+
+#' @export
+plot.context_cor <- function(x, ...) {
+  
+  if (!inherits(x, "context_cor")) {
+    stop("`x` doit être un objet de classe 'context_cor'.")
+  }
+  
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop("Le package ggplot2 est requis pour plot.context_cor().")
+  }
+  
+  # Cas simple : seulement 2 variables → scatterplot
+  if (ncol(x$cor_mat) == 2) {
+    
+    vars <- colnames(x$cor_mat)
+    df <- x$data
+    
+    p <- ggplot2::ggplot(df, ggplot2::aes_string(x = vars[1], y = vars[2])) +
+      ggplot2::geom_point(alpha = 0.7, color = "steelblue") +
+      ggplot2::geom_smooth(method = "lm", se = FALSE, color = "darkred") +
+      ggplot2::theme_minimal() +
+      ggplot2::labs(
+        title = sprintf("Corrélation entre %s et %s", vars[1], vars[2]),
+        subtitle = sprintf("Méthode : %s | r = %.3f",
+                           x$method,
+                           x$cor_mat[1, 2]),
+        x = vars[1],
+        y = vars[2]
+      )
+    
+    print(p)
+    return(invisible(x))
+  }
+  
+  # Cas général : heatmap de la matrice de corrélation
+  cor_df <- as.data.frame(as.table(x$cor_mat))
+  names(cor_df) <- c("Var1", "Var2", "Correlation")
+  
+  p <- ggplot2::ggplot(cor_df,
+                       ggplot2::aes(x = Var1, y = Var2, fill = Correlation)) +
+    ggplot2::geom_tile(color = "white") +
+    ggplot2::scale_fill_gradient2(
+      low = "#4575b4", mid = "white", high = "#d73027",
+      midpoint = 0, limits = c(-1, 1)
+    ) +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)
+    ) +
+    ggplot2::labs(
+      title = "Heatmap des corrélations",
+      subtitle = sprintf("Méthode : %s | %d variables",
+                         x$method, ncol(x$cor_mat)),
+      x = "",
+      y = "",
+      fill = "r"
+    )
+  
+  print(p)
+  invisible(x)
+}
+
