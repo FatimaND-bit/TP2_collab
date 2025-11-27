@@ -1,1 +1,83 @@
+############################################################
+# Démonstration du package llmstats
+# TP #2 — Analyse statistique contextuelle avec LLM
+############################################################
+
+library(llmstats)
+library(palmerpenguins)
+
+cat("===== DEMO LLMSTATS =====\n\n")
+
+############################################################
+# 1. Chargement du dataset et extraction du contexte
+############################################################
+
+cat("• Extraction du contexte du dataset 'penguins'...\n")
+ctx <- get_dataset_help("penguins", "palmerpenguins")
+
+cat("Contexte récupéré (extrait) :\n")
+cat(substr(ctx, 1, 300), "...\n\n")
+
+############################################################
+# 2. Exemple 1 — ANOVA contextuelle
+############################################################
+
+cat("===== ANOVA CONTEXTUELLE =====\n\n")
+
+res_anova <- context_anova(
+  body_mass_g ~ species,
+  data = penguins,
+  context = ctx
+)
+
+print(res_anova)
+cat("\n")
+
+summary(res_anova)
+
+cat("\n• Génération du graphique ANOVA...\n")
+plot(res_anova)
+cat("\n")
+
+############################################################
+# 3. Exemple 2 — Corrélation contextuelle
+############################################################
+
+cat("===== CORRÉLATION CONTEXTUELLE =====\n\n")
+
+res_cor <- cor_context(
+  data = penguins,
+  vars = c("bill_length_mm", "bill_depth_mm"),
+  context = ctx
+)
+
+print(res_cor)
+cat("\n")
+
+summary(res_cor)
+
+cat("\n• Génération du graphique de corrélation...\n")
+plot(res_cor)
+cat("\n")
+
+############################################################
+# 4. Exemple 3 — Interprétation avec LLM (si disponible)
+############################################################
+
+cat("===== TEST DU LLM =====\n")
+
+if (exists("ctx_llm_generate", mode = "function")) {
+  msg <- try(ctx_llm_generate("Explique brièvement la différence entre ANOVA et corrélation."), silent = TRUE)
+  
+  if (!inherits(msg, "try-error") && !is.null(msg)) {
+    cat("Réponse LLM :\n")
+    cat(msg, "\n")
+  } else {
+    cat("(LLM non disponible — aucun texte généré)\n")
+  }
+} else {
+  cat("(Aucune fonction ctx_llm_generate() détectée)\n")
+}
+
+cat("\n===== FIN DE LA DEMO =====\n")
 
