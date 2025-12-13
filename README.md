@@ -66,16 +66,24 @@ de l’aide d’un dataset R pour servir de contexte aux analyses.
 
 # Prérequis logiciels
 
-R ≥ 4.2
+Version de R : ≥ 4.2
 
 Packages R :
-stats, utils, tools, ggplot2, ellmer, jsonlite, httr
+- stats;
+- utils;
+- tools; 
+- ggplot2;
+- ellmer; 
+- jsonlite;
+- httr.
 
-Ollama (recommandé)
-pour exécuter un modèle LLM localement.
+Ollama (recommandé) :
+pour exécuter un modèle LLM localement. Assurer d'avoir le modèle `lama3.2:1b` d'installé sur votre 
+système. Si ce n'est pas le cas, entrer cette commande dans votre terminal : 
+`Ollama pull llama3.2:1b`
 
 Une fois Ollama installé, tester avec :
-`ollama run mistral "Bonjour"`
+`ollama run llama3.2:1b "Bonjour"`
 
 # Exemple de flux de travail avec le package
 
