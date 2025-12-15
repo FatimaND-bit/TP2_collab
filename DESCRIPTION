@@ -14,8 +14,7 @@ Authors@R: c(
            role = "aut"),
     person("", "", 
            email = "",
-           role = "aut")
-)
+           role = "aut"))
 Description: Ce package étend des fonctions statistiques classiques 
     (ANOVA, corrélation, etc.) en y intégrant une interprétation automatique 
     générée par un modèle de langage (LLM). Il inclut des méthodes S3 pour 
