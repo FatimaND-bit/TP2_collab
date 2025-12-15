@@ -236,7 +236,7 @@ summary.context_cor <- function(object,
     prompt <- paste(
       "On a calculé une matrice de corrélation entre variables numériques.",
       "Résumé statistique des corrélations (min, médiane, max, etc.) :",
-      paste(capture.output(print(round(stats, 3))), collapse = "\n"),
+      paste(utils::capture.output(print(round(stats, 3))), collapse = "\n"),
       sprintf("Nombre de corrélations fortes (|r| >= %.2f) : %d", strong, n_strong),
       sprintf("Nombre de corrélations modérées (%.2f <= |r| < %.2f) : %d",
               moderate, strong, n_moderate),

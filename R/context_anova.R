@@ -58,7 +58,7 @@ print.context_anova <- function(x, digits = 3, ...) {
 
     prompt <- paste(
       "Voici une table ANOVA :",
-      paste(capture.output(print(tab)), collapse = "\n"),
+      paste(utils::capture.output(print(tab)), collapse = "\n"),
       if (!is.null(x$context)) paste("\nContexte :", x$context) else "",
       "\nRédige 2-3 phrases expliquant les résultats de manière claire et pédagogique.",
       sep = "\n"
@@ -98,7 +98,7 @@ summary.context_anova <- function(object, digits = 3, ...) {
     prompt <- paste(
       "Analyse détaillée d'une ANOVA.",
       "\nTable ANOVA :",
-      paste(capture.output(print(tab)), collapse = "\n"),
+      paste(utils::capture.output(print(tab)), collapse = "\n"),
       if (!is.null(object$context)) paste("\nContexte :", object$context) else "",
       "\nRédige une interprétation complète (4-7 phrases), en expliquant :",
       "- l’effet du facteur sur la variable réponse ;",

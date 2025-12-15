@@ -12,8 +12,8 @@ Authors@R: c(
     person("Saa Moussa", "Tenguiano", 
            email = "saa-moussa.tenguiano.1@ulaval.ca",
            role = "aut"),
-    person("", "", 
-           email = "",
+    person("Fatima", "Ndiaye", 
+           email = "fatima.ndiaye.2@ulaval.ca",
            role = "aut"))
 Description: Ce package étend des fonctions statistiques classiques 
     (ANOVA, corrélation, etc.) en y intégrant une interprétation automatique 

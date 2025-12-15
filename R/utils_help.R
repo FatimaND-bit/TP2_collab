@@ -59,9 +59,14 @@ get_dataset_help <- function(
   }
 
   # 6. Convertir le fichier Rd en texte
-  rd_path <- utils:::.getHelpFile(h)
-  rd_text <- capture.output(tools::Rd2txt(rd_path))
-
+  # h = help() (déjà calculé)
+  rd_db   <- attr(h, "RdDB")
+  topic   <- attr(h, "topic")
+  
+  rd_obj  <- tools::Rd_db(rd_db)[[topic]]
+  rd_text <- utils::capture.output(tools::Rd2txt(rd_obj))
+  
+  
   # 7. Extraire les sections utiles
   keep <- logical(length(rd_text))
   for (sec in sections) {
